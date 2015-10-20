@@ -11,7 +11,7 @@ var About = React.createClass({
 				callback();
 			}
 		},
-		
+
 		willTransitionFrom: function(transition, component) {
 			if (!confirm('Are you sure you want to leave a page that\'s this exciting?')) {
 				transition.about();
@@ -21,9 +21,9 @@ var About = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<h1>About</h1>
+				<h1>About this amazing app</h1>
 				<p>
-					This application uses the following technologies:
+					This application uses the following technologiez:
 					<ul>
 						<li>React</li>
 						<li>React Router</li>
