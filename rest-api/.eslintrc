@@ -1,0 +1,29 @@
+#last review done for eslint 0.16.1
+# https://github.com/zaggino/brackets-eslint/blob/master/.eslintrc
+
+ecmaFeatures:
+  jsx: true
+  
+env:
+  browser: true
+  es6: true
+  node: true
+  
+rules:
+   
+  #Best Practices  
+  
+  #Strict Mode
+  global-strict: 0 #deprecated
+  no-extra-strict: 0 #deprecated
+  strict: [2, "function"] #controls location of Use Strict Directives
+  
+  #Variables
+  
+  
+  #Stylistic Issues
+   
+  generator-star: [2, "start"] #enforce the position of the * in generator functions
+  
+  #Legacy
+   
