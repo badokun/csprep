@@ -64,6 +64,25 @@ app.get('/api/trades/:id', function (req, res) {
     });
 });
 
+// Single update
+app.put('/api/trades/:id', function (req, res) {
+    return tradeModel.findById(req.params.id, function (err, trade) {
+        // product.symbol = req.body.symbol;
+        trade.quantity = req.body.quantity;
+        
+        return trade.save(function (err) {
+            if (!err) {
+                console.log("updated");
+            } else {
+                console.log(err);
+            }
+            return res.send(trade);
+        });
+    });
+});
+
+
+
 var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;

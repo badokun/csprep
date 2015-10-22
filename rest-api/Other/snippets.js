@@ -10,11 +10,7 @@
         http://stackoverflow.com/a/7474386
 */
 
-
-// jQuery snippets used in the console to use the REST api created with app.js
-
 // CREATE
-
 jQuery.post("/api/trades", {
   symbol: "JP1322TS"
 }, function(data, textStatus, jqXHR) { 
@@ -26,7 +22,7 @@ jQuery.post("/api/trades", {
 
 // READ
 
-jQuery.get("/api/products/", function(data, textStatus, jqXHR) { 
+jQuery.get("/api/trades/", function(data, textStatus, jqXHR) { 
     console.log("Post resposne:"); 
     console.dir(data); 
     console.log(textStatus); 
@@ -43,44 +39,10 @@ jQuery.get("/api/products/4f34734d21289c1c28000007", function(data, textStatus, 
 // UPDATE
 
 jQuery.ajax({
-    url: "/api/products/4f34734d21289c1c28000007", 
+    url: "/api/trades/562877e0edd5ce5411a1451b", 
     type: "PUT",
     data: {
-      "title": "My Awesome T-shirt",  
-      "description": "All about the details. Of course it's black, and longsleeve.",  
-      "images": [  
-        {  
-          "kind": "thumbnail",  
-          "url": "images/products/1234/main.jpg"  
-        }  
-      ],  
-      "categories": [  
-          { "name": "Clothes" },
-          { "name": "Shirts" } 
-      ],  
-      "style": "1234",  
-      "variants": [  
-        {  
-          "color": "Black",  
-          "images": [  
-            {  
-              "kind": "zoom",  
-              "url": "images/products/1234/zoom.jpg"  
-            }
-          ],  
-          "sizes": [  
-            {  
-              "size": "L",  
-              "available": 77,  
-              "sku": "CAT-1234-Blk-L",  
-              "price": 99.99  
-            }
-          ]  
-        }  
-      ],
-      "catalogs": [
-          { "name": "Apparel" }
-      ]  
+      "quantity": "111111"
     }, 
     success: function(data, textStatus, jqXHR) { 
         console.log("PUT resposne:"); 
