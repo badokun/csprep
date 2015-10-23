@@ -4,9 +4,17 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "method-override": "^2.3.5",
     "mongoose": "^4.1.12",
-    "path": "^0.12.7"
+    "morgan": "^1.6.1",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
+    "path": "^0.12.7",
+    "util": "^0.10.3"
   },
   "devDependencies": {},
   "scripts": {
