@@ -12,7 +12,7 @@
 
 // CREATE
 jQuery.post("/api/trades", {
-  symbol: "JP1322TS"
+  symbol: "JP:1322-TS"
 }, function(data, textStatus, jqXHR) { 
     console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
 });
