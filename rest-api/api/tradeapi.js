@@ -128,7 +128,8 @@ var tradeApi = {
         
         
         app.get('/', function (req, res) {
-          res.send('Root of the application');
+            res.render('index');
+            // res.send('Root of the application');
         });
 
         app.get('/api', ensureAuthenticated, function (req, res) {
@@ -156,7 +157,7 @@ var tradeApi = {
         });
 
         // List products
-        app.get('/api/trades', function (req, res) {
+        app.get('/api/trades', ensureAuthenticated, function (req, res) {
             return tradeModel.find(function (err, products) {
                 if (!err) {
                     return res.send(products);
@@ -167,7 +168,7 @@ var tradeApi = {
         });
 
         // Single product
-        app.get('/api/trades/:id', function (req, res) {
+        app.get('/api/trades/:id', ensureAuthenticated, function (req, res) {
             return tradeModel.findById(req.params.id, function (err, product) {
                 if (!err) {
                     return res.send(product);
@@ -178,7 +179,7 @@ var tradeApi = {
         });
 
         // Single update
-        app.put('/api/trades/:id', function (req, res) {
+        app.put('/api/trades/:id', ensureAuthenticated, function (req, res) {
             return tradeModel.findById(req.params.id, function (err, trade) {
                 // product.symbol = req.body.symbol;
                 trade.quantity = req.body.quantity;
