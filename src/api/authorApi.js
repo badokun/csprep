@@ -3,6 +3,7 @@
 //This file is mocking a web API by hitting hard coded data.
 var authors = require('./authorData').authors;
 var _ = require('lodash');
+$ = jQuery = require('jquery');
 
 //This would be performed on the server in a real app. Just stubbing in.
 var _generateId = function(author) {
@@ -14,8 +15,14 @@ var _clone = function(item) {
 };
 
 var AuthorApi = {
-	getAllAuthors: function() {
-		return _clone(authors); 
+	getAllAuthors: function(callback, t) {
+    
+        return $.get("http://localhost:3000/api/authors/", function(data, textStatus, jqXHR) { 
+                console.dir('data received');
+                console.dir(data);
+                callback(data, t);
+                // return data;
+            });
 	},
 
 	getAuthorById: function(id) {

@@ -21,7 +21,7 @@ var ManageAuthorPage = React.createClass({
 
 	getInitialState: function() {
 		return {
-			author: { id: '', firstName: '', lastName: '' },
+			author: { _id: '', firstName: '', lastName: '' },
 			errors: {},
 			dirty: false
 		};

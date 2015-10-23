@@ -14,9 +14,24 @@ var AuthorPage = React.createClass({
 	},
 
 	componentDidMount: function() {
-		if (this.isMounted()) {
-			this.setState({ authors: AuthorApi.getAllAuthors() });
+        
+        
+        var callback = function(data, c){
+            console.dir(data);
+            c.setState({ authors: data });
+        };
+        
+        
+		if (this.isMounted()) {      
+            
+            AuthorApi.getAllAuthors(callback, this);
+            
+			// this.setState({ authors: AuthorApi.getAllAuthors() });
+            
+            
 		}
+        
+        
 	},
 
 	render: function() {

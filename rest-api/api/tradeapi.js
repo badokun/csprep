@@ -3,6 +3,7 @@
 var mongoose = require('mongoose')
     , express = require('express')
     , tradeSchema = require('../models/trade.js')
+    , authorSchema = require('../models/author.js')
     , facebookcredentials = require('../facebook/facebook-credentials')
     , passport = require('passport')
     , FacebookStrategy = require('passport-facebook').Strategy
@@ -71,11 +72,18 @@ var tradeApi = {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.static(__dirname + '/public'));
+
+  app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+  });
         
         
 
         mongoose.connect('mongodb://localhost/MongoDB');
         var tradeModel = mongoose.model('tradeModel', tradeSchema);
+        var authorModel = mongoose.model('authorModel', authorSchema);
         
         
         app.get('/login', function(req, res){
@@ -156,11 +164,43 @@ var tradeApi = {
             return res.send(trade);
         });
 
+        app.post('/api/authors', function (req, res) {
+            var author;
+            console.log(req.body);
+            author = new authorModel({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                id: req.body.id
+            });
+
+            author.save(function (err) {
+                if (!err) {
+                    return console.log("created");
+                } else {
+                    return console.log(err);
+                }
+            });
+            return res.send(author);
+        });
+
         // List products
-        app.get('/api/trades', ensureAuthenticated, function (req, res) {
+        app.get('/api/trades', function (req, res) {
             return tradeModel.find(function (err, products) {
                 if (!err) {
                     return res.send(products);
+                } else {
+                    return console.log(err);
+                }
+            });
+        });
+
+        // List authors
+        app.get('/api/authors', function (req, res) {
+            return authorModel.find(function (err, authors) {
+                if (!err) {
+                      res.header("Access-Control-Allow-Origin", "*");
+                      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+                    return res.send(authors);
                 } else {
                     return console.log(err);
                 }
