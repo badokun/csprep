@@ -36,7 +36,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
     clientID: facebookcredentials.FACEBOOK_APP_ID,
     clientSecret: facebookcredentials.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3001/auth/facebook/callback"
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
@@ -124,16 +124,19 @@ var tradeApi = {
             My stuff goes here...        
         */
 
+        
+        
+        
         app.get('/', function (req, res) {
           res.send('Root of the application');
         });
 
-        app.get('/api', function (req, res) {
+        app.get('/api', ensureAuthenticated, function (req, res) {
             res.send('API is running');
         });
 
         // POST to CREATE
-        app.post('/api/trades', function (req, res) {
+        app.post('/api/trades', ensureAuthenticated,function (req, res) {
             var trade;
             console.log("POST: ");
             console.log(req.body);
