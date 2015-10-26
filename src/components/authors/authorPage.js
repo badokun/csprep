@@ -6,6 +6,11 @@ var Link = require('react-router').Link;
 var AuthorApi = require('../../api/authorApi');
 var AuthorList = require('./authorList');
 
+var apiCallback = function(data, component){
+            console.log('Set state using api data');
+            component.setState({ authors: data });
+        };
+
 var AuthorPage = React.createClass({
 	getInitialState: function() {
 		return {
@@ -14,24 +19,9 @@ var AuthorPage = React.createClass({
 	},
 
 	componentDidMount: function() {
-        
-        
-        var callback = function(data, c){
-            console.dir(data);
-            c.setState({ authors: data });
-        };
-        
-        
 		if (this.isMounted()) {      
-            
-            AuthorApi.getAllAuthors(callback, this);
-            
-			// this.setState({ authors: AuthorApi.getAllAuthors() });
-            
-            
+            AuthorApi.getAllAuthors(apiCallback, this);
 		}
-        
-        
 	},
 
 	render: function() {

@@ -6,6 +6,10 @@ var AuthorForm = require('./authorForm');
 var AuthorApi = require('../../api/authorApi');
 var toastr = require('toastr');
 
+var apiCallback = function(data, component) {
+    component.setState({author: data });
+};
+
 var ManageAuthorPage = React.createClass({
 	mixins: [
 		Router.Navigation
@@ -28,10 +32,10 @@ var ManageAuthorPage = React.createClass({
 	},
 
 	componentWillMount: function() {
-		var authorId = this.props.params.id; //from the path '/author:id'
-
+		var authorId = this.props.params._id; //from the path '/author:id'
 		if (authorId) {
-			this.setState({author: AuthorApi.getAuthorById(authorId) });
+			// this.setState({author: AuthorApi.getAuthorById(authorId, apiCallback, this) });
+            AuthorApi.getAuthorById(authorId, apiCallback, this);
 		}
 	},
 

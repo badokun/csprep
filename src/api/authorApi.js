@@ -15,19 +15,18 @@ var _clone = function(item) {
 };
 
 var AuthorApi = {
-	getAllAuthors: function(callback, t) {
-    
+	getAllAuthors: function(callback, component) {
         return $.get("http://localhost:3000/api/authors/", function(data, textStatus, jqXHR) { 
-                console.dir('data received');
-                console.dir(data);
-                callback(data, t);
-                // return data;
+                console.dir('Data received from Api');
+                callback(data, component);
             });
 	},
 
-	getAuthorById: function(id) {
-		var author = _.find(authors, {id: id});
-		return _clone(author);
+	getAuthorById: function(id, callback, component) {
+        return $.get("http://localhost:3000/api/authors/" + id, function(data, textStatus, jqXHR) { 
+                console.dir('Author received from Api');
+                callback(data, component);
+            });
 	},
 	
 	saveAuthor: function(author) {

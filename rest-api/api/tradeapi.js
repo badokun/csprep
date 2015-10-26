@@ -218,6 +218,22 @@ var tradeApi = {
             });
         });
 
+        // Single author
+        app.get('/api/authors/:id', function (req, res) {
+            return authorModel.findById(req.params.id, function (err, author) {
+                if (!err) {
+                      res.header("Access-Control-Allow-Origin", "*");
+                      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+                    return res.send(author);
+                } else {
+                    return console.log(err);
+                }
+            });
+        });
+
+
+        
+
         // Single update
         app.put('/api/trades/:id', ensureAuthenticated, function (req, res) {
             return tradeModel.findById(req.params.id, function (err, trade) {
